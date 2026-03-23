@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_d15d43070cdef5a4175d35073e71705f {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<div style="position:fixed; bottom:30px; left:30px; z-index:1000;
+     background:white; padding:12px 16px; border-radius:8px;
+     box-shadow:2px 2px 8px rgba(0,0,0,0.3); font-family:Arial; font-size:12px">
+  <b>AQI PM2.5 Legend</b><br>
+  <span style="background:#00e400; width:14px; height:14px; display:inline-block; border-radius:50%"></span> Good (0–12)<br>
+  <span style="background:#ffff00; width:14px; height:14px; display:inline-block; border-radius:50%"></span> Moderate (12–35.4)<br>
+  <span style="background:#ff7e00; width:14px; height:14px; display:inline-block; border-radius:50%"></span> Unhealthy for Sensitive (35.4–55.4)<br>
+  <span style="background:#ff0000; width:14px; height:14px; display:inline-block; border-radius:50%"></span> Unhealthy (55.4–150.4)<br>
+  <span style="background:#8f3f97; width:14px; height:14px; display:inline-block; border-radius:50%"></span> Very Unhealthy (150.4–250.4)<br>
+  <span style="background:#7e0023; width:14px; height:14px; display:inline-block; border-radius:50%"></span> Hazardous (>250.4)
+</div>
+    
+            <div class="folium-map" id="map_d15d43070cdef5a4175d35073e71705f" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_d15d43070cdef5a4175d35073e71705f = L.map(
+                "map_d15d43070cdef5a4175d35073e71705f",
+                {
+                    center: [40.0, 116.4],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_b7207f25f88e286dfeefea0def9b47ff = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_b7207f25f88e286dfeefea0def9b47ff.addTo(map_d15d43070cdef5a4175d35073e71705f);
+        
+    
+            var circle_marker_8202c8094fe9896305f71a5520bc911c = L.circleMarker(
+                [39.9829, 116.3971],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_d15d43070cdef5a4175d35073e71705f);
+        
+    
+        var popup_52a5e8d533f8cb4f0069326ce2fd54c5 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_6bf0e2d99add86875cf64b976e559d84 = $(`<div id="html_6bf0e2d99add86875cf64b976e559d84" style="width: 100.0%; height: 100.0%;">     <div style='font-family:Arial; font-size:13px; width:200px'>         <b>Aotizhongxin</b><br>         Avg PM2.5: <b>83.2 µg/m³</b><br>         AQI Category: <b>Unhealthy</b><br>         Avg PM10: 110.7 µg/m³<br>         Avg Temp: 13.6 °C     </div>     </div>`)[0];
+                popup_52a5e8d533f8cb4f0069326ce2fd54c5.setContent(html_6bf0e2d99add86875cf64b976e559d84);
+            
+        
+
+        circle_marker_8202c8094fe9896305f71a5520bc911c.bindPopup(popup_52a5e8d533f8cb4f0069326ce2fd54c5)
+        ;
+
+        
+    
+    
+            circle_marker_8202c8094fe9896305f71a5520bc911c.bindTooltip(
+                `<div>
+                     Aotizhongxin: 83.2 µg/m³
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8acc641364e14b0baa3102cb2aa0eb77 = L.circleMarker(
+                [40.2175, 116.2309],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_d15d43070cdef5a4175d35073e71705f);
+        
+    
+        var popup_36766b7d5993f38cf57fe0619682ee3c = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_88cf01e3b1e57c4363f6e150d08deabb = $(`<div id="html_88cf01e3b1e57c4363f6e150d08deabb" style="width: 100.0%; height: 100.0%;">     <div style='font-family:Arial; font-size:13px; width:200px'>         <b>Changping</b><br>         Avg PM2.5: <b>71.1 µg/m³</b><br>         AQI Category: <b>Unhealthy</b><br>         Avg PM10: 94.8 µg/m³<br>         Avg Temp: 13.7 °C     </div>     </div>`)[0];
+                popup_36766b7d5993f38cf57fe0619682ee3c.setContent(html_88cf01e3b1e57c4363f6e150d08deabb);
+            
+        
+
+        circle_marker_8acc641364e14b0baa3102cb2aa0eb77.bindPopup(popup_36766b7d5993f38cf57fe0619682ee3c)
+        ;
+
+        
+    
+    
+            circle_marker_8acc641364e14b0baa3102cb2aa0eb77.bindTooltip(
+                `<div>
+                     Changping: 71.1 µg/m³
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f87be1157588bc00c4a42b3288f19f49 = L.circleMarker(
+                [40.2925, 116.22],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_d15d43070cdef5a4175d35073e71705f);
+        
+    
+        var popup_71f46145ca434dc7dd983b689d0c2ab6 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_d3fbf69844789c4f5900822878a9e768 = $(`<div id="html_d3fbf69844789c4f5900822878a9e768" style="width: 100.0%; height: 100.0%;">     <div style='font-family:Arial; font-size:13px; width:200px'>         <b>Dingling</b><br>         Avg PM2.5: <b>67.4 µg/m³</b><br>         AQI Category: <b>Unhealthy</b><br>         Avg PM10: 84.2 µg/m³<br>         Avg Temp: 13.7 °C     </div>     </div>`)[0];
+                popup_71f46145ca434dc7dd983b689d0c2ab6.setContent(html_d3fbf69844789c4f5900822878a9e768);
+            
+        
+
+        circle_marker_f87be1157588bc00c4a42b3288f19f49.bindPopup(popup_71f46145ca434dc7dd983b689d0c2ab6)
+        ;
+
+        
+    
+    
+            circle_marker_f87be1157588bc00c4a42b3288f19f49.bindTooltip(
+                `<div>
+                     Dingling: 67.4 µg/m³
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2fdce23c47c3a17a20081741f652308b = L.circleMarker(
+                [39.929, 116.4175],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_d15d43070cdef5a4175d35073e71705f);
+        
+    
+        var popup_d0ecd5f3870f80afb7bfe22567fdd7b8 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_aa17ba4dc22fc861068333c5a9ef8ea4 = $(`<div id="html_aa17ba4dc22fc861068333c5a9ef8ea4" style="width: 100.0%; height: 100.0%;">     <div style='font-family:Arial; font-size:13px; width:200px'>         <b>Dongsi</b><br>         Avg PM2.5: <b>86.3 µg/m³</b><br>         AQI Category: <b>Unhealthy</b><br>         Avg PM10: 110.6 µg/m³<br>         Avg Temp: 13.7 °C     </div>     </div>`)[0];
+                popup_d0ecd5f3870f80afb7bfe22567fdd7b8.setContent(html_aa17ba4dc22fc861068333c5a9ef8ea4);
+            
+        
+
+        circle_marker_2fdce23c47c3a17a20081741f652308b.bindPopup(popup_d0ecd5f3870f80afb7bfe22567fdd7b8)
+        ;
+
+        
+    
+    
+            circle_marker_2fdce23c47c3a17a20081741f652308b.bindTooltip(
+                `<div>
+                     Dongsi: 86.3 µg/m³
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_26cf5115e9fe7dca6e99f604d7fe0cfa = L.circleMarker(
+                [39.929, 116.339],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_d15d43070cdef5a4175d35073e71705f);
+        
+    
+        var popup_4c47daf580df78c9d23d188fa15da1de = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_6afc69cfe3f13331f623f8af22c8fbf6 = $(`<div id="html_6afc69cfe3f13331f623f8af22c8fbf6" style="width: 100.0%; height: 100.0%;">     <div style='font-family:Arial; font-size:13px; width:200px'>         <b>Guanyuan</b><br>         Avg PM2.5: <b>83.0 µg/m³</b><br>         AQI Category: <b>Unhealthy</b><br>         Avg PM10: 109.2 µg/m³<br>         Avg Temp: 13.6 °C     </div>     </div>`)[0];
+                popup_4c47daf580df78c9d23d188fa15da1de.setContent(html_6afc69cfe3f13331f623f8af22c8fbf6);
+            
+        
+
+        circle_marker_26cf5115e9fe7dca6e99f604d7fe0cfa.bindPopup(popup_4c47daf580df78c9d23d188fa15da1de)
+        ;
+
+        
+    
+    
+            circle_marker_26cf5115e9fe7dca6e99f604d7fe0cfa.bindTooltip(
+                `<div>
+                     Guanyuan: 83.0 µg/m³
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bc4954754eaa215465a60a00d40b9028 = L.circleMarker(
+                [39.914, 116.184],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_d15d43070cdef5a4175d35073e71705f);
+        
+    
+        var popup_7dd4acafa61fd593b5aa690a4999eb68 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_317fadb66f51aff3e5af872d7feac2f8 = $(`<div id="html_317fadb66f51aff3e5af872d7feac2f8" style="width: 100.0%; height: 100.0%;">     <div style='font-family:Arial; font-size:13px; width:200px'>         <b>Gucheng</b><br>         Avg PM2.5: <b>84.3 µg/m³</b><br>         AQI Category: <b>Unhealthy</b><br>         Avg PM10: 119.3 µg/m³<br>         Avg Temp: 13.9 °C     </div>     </div>`)[0];
+                popup_7dd4acafa61fd593b5aa690a4999eb68.setContent(html_317fadb66f51aff3e5af872d7feac2f8);
+            
+        
+
+        circle_marker_bc4954754eaa215465a60a00d40b9028.bindPopup(popup_7dd4acafa61fd593b5aa690a4999eb68)
+        ;
+
+        
+    
+    
+            circle_marker_bc4954754eaa215465a60a00d40b9028.bindTooltip(
+                `<div>
+                     Gucheng: 84.3 µg/m³
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_854080323633a07eb9ecb9ca60d67239 = L.circleMarker(
+                [40.3281, 116.6283],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_d15d43070cdef5a4175d35073e71705f);
+        
+    
+        var popup_ac8da59e577a40176a86302dbd3b32b8 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_da812b563db9f820a0afad7b7382f8be = $(`<div id="html_da812b563db9f820a0afad7b7382f8be" style="width: 100.0%; height: 100.0%;">     <div style='font-family:Arial; font-size:13px; width:200px'>         <b>Huairou</b><br>         Avg PM2.5: <b>70.0 µg/m³</b><br>         AQI Category: <b>Unhealthy</b><br>         Avg PM10: 92.7 µg/m³<br>         Avg Temp: 12.4 °C     </div>     </div>`)[0];
+                popup_ac8da59e577a40176a86302dbd3b32b8.setContent(html_da812b563db9f820a0afad7b7382f8be);
+            
+        
+
+        circle_marker_854080323633a07eb9ecb9ca60d67239.bindPopup(popup_ac8da59e577a40176a86302dbd3b32b8)
+        ;
+
+        
+    
+    
+            circle_marker_854080323633a07eb9ecb9ca60d67239.bindTooltip(
+                `<div>
+                     Huairou: 70.0 µg/m³
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ab72d0e11b175f7cd23318927b38ecc6 = L.circleMarker(
+                [39.9368, 116.4605],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_d15d43070cdef5a4175d35073e71705f);
+        
+    
+        var popup_c5c9763fe4f19cdb8a99a979ced1defe = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_856ad57e95cf5cad42af54a56e74fab3 = $(`<div id="html_856ad57e95cf5cad42af54a56e74fab3" style="width: 100.0%; height: 100.0%;">     <div style='font-family:Arial; font-size:13px; width:200px'>         <b>Nongzhanguan</b><br>         Avg PM2.5: <b>85.3 µg/m³</b><br>         AQI Category: <b>Unhealthy</b><br>         Avg PM10: 109.5 µg/m³<br>         Avg Temp: 13.7 °C     </div>     </div>`)[0];
+                popup_c5c9763fe4f19cdb8a99a979ced1defe.setContent(html_856ad57e95cf5cad42af54a56e74fab3);
+            
+        
+
+        circle_marker_ab72d0e11b175f7cd23318927b38ecc6.bindPopup(popup_c5c9763fe4f19cdb8a99a979ced1defe)
+        ;
+
+        
+    
+    
+            circle_marker_ab72d0e11b175f7cd23318927b38ecc6.bindTooltip(
+                `<div>
+                     Nongzhanguan: 85.3 µg/m³
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5e76f4ba30233a5ce22d863d311f6d71 = L.circleMarker(
+                [40.127, 116.6557],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_d15d43070cdef5a4175d35073e71705f);
+        
+    
+        var popup_6f55de34772ae7b99928ecfbca54445d = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_6d70ef9843c4d0bd71f025b7b2e4b345 = $(`<div id="html_6d70ef9843c4d0bd71f025b7b2e4b345" style="width: 100.0%; height: 100.0%;">     <div style='font-family:Arial; font-size:13px; width:200px'>         <b>Shunyi</b><br>         Avg PM2.5: <b>80.0 µg/m³</b><br>         AQI Category: <b>Unhealthy</b><br>         Avg PM10: 99.7 µg/m³<br>         Avg Temp: 13.4 °C     </div>     </div>`)[0];
+                popup_6f55de34772ae7b99928ecfbca54445d.setContent(html_6d70ef9843c4d0bd71f025b7b2e4b345);
+            
+        
+
+        circle_marker_5e76f4ba30233a5ce22d863d311f6d71.bindPopup(popup_6f55de34772ae7b99928ecfbca54445d)
+        ;
+
+        
+    
+    
+            circle_marker_5e76f4ba30233a5ce22d863d311f6d71.bindTooltip(
+                `<div>
+                     Shunyi: 80.0 µg/m³
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ac8db2f49b3a7a2a5b41dd528e928584 = L.circleMarker(
+                [39.8863, 116.4079],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_d15d43070cdef5a4175d35073e71705f);
+        
+    
+        var popup_c968b31977e0dc3fbcd6020242f7dfc0 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_fad051f0a8a0dc0553fce4c3d4755f8b = $(`<div id="html_fad051f0a8a0dc0553fce4c3d4755f8b" style="width: 100.0%; height: 100.0%;">     <div style='font-family:Arial; font-size:13px; width:200px'>         <b>Tiantan</b><br>         Avg PM2.5: <b>82.3 µg/m³</b><br>         AQI Category: <b>Unhealthy</b><br>         Avg PM10: 106.7 µg/m³<br>         Avg Temp: 13.7 °C     </div>     </div>`)[0];
+                popup_c968b31977e0dc3fbcd6020242f7dfc0.setContent(html_fad051f0a8a0dc0553fce4c3d4755f8b);
+            
+        
+
+        circle_marker_ac8db2f49b3a7a2a5b41dd528e928584.bindPopup(popup_c968b31977e0dc3fbcd6020242f7dfc0)
+        ;
+
+        
+    
+    
+            circle_marker_ac8db2f49b3a7a2a5b41dd528e928584.bindTooltip(
+                `<div>
+                     Tiantan: 82.3 µg/m³
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_99d12246da54daed9f7e990e8e739e5b = L.circleMarker(
+                [39.987, 116.2882],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_d15d43070cdef5a4175d35073e71705f);
+        
+    
+        var popup_eb77f6cb8c64af15c3191c159cab3e84 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_7a3c89ebd7d7908c4df68e1e47a9813c = $(`<div id="html_7a3c89ebd7d7908c4df68e1e47a9813c" style="width: 100.0%; height: 100.0%;">     <div style='font-family:Arial; font-size:13px; width:200px'>         <b>Wanliu</b><br>         Avg PM2.5: <b>83.5 µg/m³</b><br>         AQI Category: <b>Unhealthy</b><br>         Avg PM10: 110.7 µg/m³<br>         Avg Temp: 13.4 °C     </div>     </div>`)[0];
+                popup_eb77f6cb8c64af15c3191c159cab3e84.setContent(html_7a3c89ebd7d7908c4df68e1e47a9813c);
+            
+        
+
+        circle_marker_99d12246da54daed9f7e990e8e739e5b.bindPopup(popup_eb77f6cb8c64af15c3191c159cab3e84)
+        ;
+
+        
+    
+    
+            circle_marker_99d12246da54daed9f7e990e8e739e5b.bindTooltip(
+                `<div>
+                     Wanliu: 83.5 µg/m³
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f4dd2e978a497d9250ab429c3cc34dbf = L.circleMarker(
+                [39.878, 116.352],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_d15d43070cdef5a4175d35073e71705f);
+        
+    
+        var popup_2374798fda3cdfb5ad5d6e2f37dd6492 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_f9b4018eb209b3e550dd3f1d65d5edb1 = $(`<div id="html_f9b4018eb209b3e550dd3f1d65d5edb1" style="width: 100.0%; height: 100.0%;">     <div style='font-family:Arial; font-size:13px; width:200px'>         <b>Wanshouxigong</b><br>         Avg PM2.5: <b>85.4 µg/m³</b><br>         AQI Category: <b>Unhealthy</b><br>         Avg PM10: 112.7 µg/m³<br>         Avg Temp: 13.8 °C     </div>     </div>`)[0];
+                popup_2374798fda3cdfb5ad5d6e2f37dd6492.setContent(html_f9b4018eb209b3e550dd3f1d65d5edb1);
+            
+        
+
+        circle_marker_f4dd2e978a497d9250ab429c3cc34dbf.bindPopup(popup_2374798fda3cdfb5ad5d6e2f37dd6492)
+        ;
+
+        
+    
+    
+            circle_marker_f4dd2e978a497d9250ab429c3cc34dbf.bindTooltip(
+                `<div>
+                     Wanshouxigong: 85.4 µg/m³
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>
