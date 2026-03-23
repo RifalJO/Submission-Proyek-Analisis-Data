@@ -26,8 +26,7 @@ wheels/
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# Data files (terlalu besar untuk GitHub)
-*.csv
+# Data files (kecuali main_data.csv)
 data/
 
 # IDE
