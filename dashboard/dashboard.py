@@ -49,13 +49,13 @@ STATION_COORDS = {
     'Wanshouxigong': {'lat': 39.8780, 'lon': 116.3520}
 }
 
-# Warna kategori AQI
+# Warna kategori AQI (darker untuk kontras lebih baik)
 AQI_COLORS = {
-    'Baik': '#2ecc71',
-    'Sedang': '#f1c40f',
-    'Tidak Sehat': '#e67e22',
-    'Sangat Tidak Sehat': '#e74c3c',
-    'Berbahaya': '#8e44ad'
+    'Baik': '#27ae60',
+    'Sedang': '#d4ac0d',
+    'Tidak Sehat': '#d35400',
+    'Sangat Tidak Sehat': '#c0392b',
+    'Berbahaya': '#7d3c98'
 }
 
 def get_aqi_category(pm25):
@@ -357,31 +357,31 @@ with tab3:
             tooltip=f"{station}: {station_data['avg_pm25']:.2f} μg/m³"
         ).add_to(m)
     
-    # Legend
+    # Legend with readable colors
     legend_html = '''
-    <div style="position: fixed; bottom: 50px; left: 50px; width: 200px; height: 180px; 
-                 background-color: white; border: 2px solid grey; z-index: 9999; font-size: 12px;
-                 padding: 10px; border-radius: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
-        <h4 style="margin-top: 0; margin-bottom: 10px;">Kategori AQI (PM2.5)</h4>
-        <div style="display: flex; align-items: center; margin-bottom: 5px;">
-            <div style="width: 20px; height: 20px; background-color: #2ecc71; margin-right: 10px; border-radius: 50%;"></div>
-            <span>Baik (0-12)</span>
+    <div style="position: fixed; bottom: 50px; left: 50px; width: 220px;
+                 background-color: rgba(255,255,255,0.95); border: 2px solid #333; z-index: 9999; font-size: 13px;
+                 padding: 12px; border-radius: 8px; box-shadow: 3px 3px 8px rgba(0,0,0,0.4);">
+        <h4 style="margin-top: 0; margin-bottom: 12px; font-weight: bold; color: #222;">Kategori AQI (PM2.5)</h4>
+        <div style="display: flex; align-items: center; margin-bottom: 8px;">
+            <div style="width: 22px; height: 22px; background-color: #27ae60; margin-right: 12px; border-radius: 50%; border: 2px solid #1a7a40;"></div>
+            <span style="color: #1a7a40; font-weight: 600;">Baik (0–12)</span>
         </div>
-        <div style="display: flex; align-items: center; margin-bottom: 5px;">
-            <div style="width: 20px; height: 20px; background-color: #f1c40f; margin-right: 10px; border-radius: 50%;"></div>
-            <span>Sedang (12-35.4)</span>
+        <div style="display: flex; align-items: center; margin-bottom: 8px;">
+            <div style="width: 22px; height: 22px; background-color: #d4ac0d; margin-right: 12px; border-radius: 50%; border: 2px solid #9c7d0a;"></div>
+            <span style="color: #7d6508; font-weight: 600;">Sedang (12–35.4)</span>
         </div>
-        <div style="display: flex; align-items: center; margin-bottom: 5px;">
-            <div style="width: 20px; height: 20px; background-color: #e67e22; margin-right: 10px; border-radius: 50%;"></div>
-            <span>Tidak Sehat (35.4-55.4)</span>
+        <div style="display: flex; align-items: center; margin-bottom: 8px;">
+            <div style="width: 22px; height: 22px; background-color: #d35400; margin-right: 12px; border-radius: 50%; border: 2px solid #a04000;"></div>
+            <span style="color: #a04000; font-weight: 600;">Tidak Sehat (35.4–55.4)</span>
         </div>
-        <div style="display: flex; align-items: center; margin-bottom: 5px;">
-            <div style="width: 20px; height: 20px; background-color: #e74c3c; margin-right: 10px; border-radius: 50%;"></div>
-            <span>Sangat Tidak Sehat (55.4-150.4)</span>
+        <div style="display: flex; align-items: center; margin-bottom: 8px;">
+            <div style="width: 22px; height: 22px; background-color: #c0392b; margin-right: 12px; border-radius: 50%; border: 2px solid #922b21;"></div>
+            <span style="color: #922b21; font-weight: 600;">Sangat Tidak Sehat (55.4–150.4)</span>
         </div>
         <div style="display: flex; align-items: center;">
-            <div style="width: 20px; height: 20px; background-color: #8e44ad; margin-right: 10px; border-radius: 50%;"></div>
-            <span>Berbahaya (>150.4)</span>
+            <div style="width: 22px; height: 22px; background-color: #7d3c98; margin-right: 12px; border-radius: 50%; border: 2px solid #5b2c6f;"></div>
+            <span style="color: #5b2c6f; font-weight: 600;">Berbahaya (>150.4)</span>
         </div>
     </div>
     '''
