@@ -218,7 +218,7 @@ with tab1:
     
     # Tampilkan tabel dengan styling
     styled_table = display_stats[['station', 'Rata-rata PM2.5', 'Rata-rata PM10', 'Kategori AQI']].style
-    styled_table = styled_table.applymap(highlight_category, subset=['Kategori AQI'])
+    styled_table = styled_table.map(highlight_category, subset=['Kategori AQI'])
     styled_table = styled_table.format({'Rata-rata PM2.5': '{:.2f}', 'Rata-rata PM10': '{:.2f}'})
     
     st.dataframe(styled_table, use_container_width=True, hide_index=True)
